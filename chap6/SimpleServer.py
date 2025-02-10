@@ -11,6 +11,7 @@ sys.path.append('/home/alejandro/workspace/trading/IBJts/source/pythonclient/')
 from ibapi.client import EClient
 from ibapi.wrapper import EWrapper
 
+
 from ibapi.utils import iswrapper
 
 # print("hello")
@@ -48,7 +49,7 @@ def main():
 
     # Sleep while the request is processed
     time.sleep(0.5)
-    print("hello Alejan dro")
+    print("hello Alejandro")
     # Disconnect from TWS
     client.disconnect()
 
