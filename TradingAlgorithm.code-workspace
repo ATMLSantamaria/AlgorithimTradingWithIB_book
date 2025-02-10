@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../IBJts/source/cppclient/client"
+		},
+		{
+			"path": "../../IBJts"
+		}
+	],
+  "settings": {}
+}
