@@ -1,6 +1,6 @@
 import sys
 from threading import Thread
-
+import time
 # Necessary to include the ibapi module
 sys.path.append('/home/alejandro/workspace/trading/IBJts/source/pythonclient/')
 
@@ -34,13 +34,50 @@ class ContractReader(EWrapper, EClient):
         # Print the symbols in the returned results
         print('Number of descriptions: {}'.format(len(contractDescriptions)))
         for desc in contractDescriptions:
-            print('Symbol: {}'.format(contractDescriptions.contract.symbol))
+            print('Symbol: {}'.format(desc.contract.symbol))
 
         # Choose the first symbol
         self.symbol = contractDescriptions[0].contract.symbol
 
     @iswrapper
-    def contract
+    def contractDetails(self,reqIq,details):
+        print('Long name: {}'.format(details.longName))
+        print('Category: {}'.format(details.category))
+        print('Subcategory: {}'.format(details.subcategory))
+        print('Contract ID: {}'.format(details.contract.conId))
+    
+    @iswrapper
+    def contractDetailsEnd(self,reqIq):
+        print('Then End')
+    
+    def error(self,reqIq,code,msg,advancedOrderRejectJson=None):
+        print('Error {}: {}'.format(format,msg))
+
+    
+def main():
+    # Create the client and connect to TWS
+    client = ContractReader('127.0.0.1', 7497, 0)
+    time.sleep(0.5)
+
+    # Request descriptions of contracts related to cheesecake
+    client.reqMatchingSymbols(0, 'NVDA')
+    time.sleep(3)
+
+    # Request details for the stock
+    contract = Contract()
+    contract.symbol = "NVDA" #client.symbol
+    contract.secType = "STK"
+    contract.exchange = "SMART"
+    contract.currency = "USD"
+    client.reqContractDetails(1, contract)
+
+    time.sleep(3)
+    client.disconnect()
+
+# Esto es para que si este script se ejecutra directamente inovquemos a la funcion main
+if __name__ == "__main__":
+    main()
+
 
     
 
